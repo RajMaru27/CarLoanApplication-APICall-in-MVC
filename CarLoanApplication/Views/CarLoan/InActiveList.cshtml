@@ -1,0 +1,92 @@
+﻿@model CarLoanApplication.Models.APIResponse.ListResponse
+@using System.Data;
+
+@{
+    ViewBag.Title = "InActive List";
+}
+
+<a href="@Url.Action("Index")" class="btn btn-primary">Add</a>
+<h2>Active Loan Applicant List</h2>
+@using (Html.BeginForm("SearchList", "CarLoan", FormMethod.Get))
+{
+    @Html.TextBox("Search")
+    <input type="submit" value="search " />
+
+}
+<table class="table">
+    <thead>
+        <tr>
+            <td scope="col">
+                <h5>FirstName</h5>
+            </td>
+            <td scope="col">
+                <h5>LastName</h5>
+            </td>
+            <td scope="col">
+                <h5>BirthDate</h5>
+            </td>
+            <td scope="col">
+                <h5>MaritalStatus</h5>
+            </td>
+            <td scope="col">
+                <h5>Email</h5>
+            </td>
+            <td scope="col">
+                <h5>CarType</h5>
+            </td>
+            <td scope="col">
+                <h5>LoanAmount</h5>
+            </td>
+            <td scope="col">
+                <h5>Activity</h5>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var L in Model.loanApplicantLists)
+        {
+            if (L.status == false)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details", new { LoanId = L.loanId })"> @L.firstName </a>
+                    </td>
+                    <td>
+                        @L.lastName
+                    </td>
+                    <td>
+                        @L.birthDate
+                    </td>
+                    <td>
+                        @L.maritalStatus
+                    </td>
+                    <td>
+                        @L.email
+                    </td>
+                    <td>
+                        @L.loanType
+                    </td>
+                    <td>
+                        @L.loanAmount
+                    </td>
+                    @if (L.status == true)
+                    {
+                        <td>
+                           <h6>Active</h6>
+                        </td>
+                    }
+                    @if (L.status == false)
+                    {
+                        <td>
+                           <h6>InActive</h6>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Active", new { LoanId = L.loanId, L.status })" class="btn btn-success"> Active </a>
+                        </td>
+                    }
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>

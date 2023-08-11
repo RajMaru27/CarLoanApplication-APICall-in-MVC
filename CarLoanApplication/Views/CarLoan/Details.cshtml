@@ -1,0 +1,198 @@
+﻿@model CarLoanApplication.Models.APIResponse.DetailApiResponse
+@using System.Data;
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Update</h2>
+
+@using (Html.BeginForm("Update", "CarLoan", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.data.result.loanId)
+    <br />
+    <h4>PERSONAL DETAILS</h4>
+    @Html.LabelFor(x => x.data.result.firstName)
+    @Html.TextBoxFor(x => x.data.result.firstName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.lastName)
+    @Html.TextBoxFor(x => x.data.result.lastName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.birthDate)
+    @Html.TextBoxFor(x => x.data.result.birthDate, new{ @type = "Date", @Value = Model.data.result.birthDate.ToString("yyyy-MM-dd") })
+    <br />
+    <br />
+    <b> Select Marital Status</b>
+    <br />
+    <span> Married : @Html.RadioButtonFor(x => x.data.result.maritalStatus, "Married") </span>
+    <span> Single :  @Html.RadioButtonFor(x => x.data.result.maritalStatus, "Single") </span>
+    <span> Divorced :  @Html.RadioButtonFor(x => x.data.result.maritalStatus, "Divorced") </span>
+    <span> Widowed :  @Html.RadioButtonFor(x => x.data.result.maritalStatus, "Widowed") </span>
+    <span> Seperated :  @Html.RadioButtonFor(x => x.data.result.maritalStatus, "Seperated") </span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.email)
+    @Html.TextBoxFor(x => x.data.result.email)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.phoneNumber)
+    @Html.TextBoxFor(x => x.data.result.phoneNumber)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.emergencyContactNumber)
+    @Html.TextBoxFor(x => x.data.result.emergencyContactNumber)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.driversLicenseNumber)
+    @Html.TextBoxFor(x => x.data.result.driversLicenseNumber)
+    <br />
+    <br />
+    <h4>ADDRESS DETAILS</h4>
+    @Html.LabelFor(x => x.data.result.addressLine1)
+    @Html.TextBoxFor(x => x.data.result.addressLine1)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.addressLine2)
+    @Html.TextBoxFor(x => x.data.result.addressLine2)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.city)
+    @Html.TextBoxFor(x => x.data.result.city)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.state)
+    @Html.TextBoxFor(x => x.data.result.state)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.postalCode)
+    @Html.TextBoxFor(x => x.data.result.postalCode)
+    <br />
+    <br />
+    <h4>FINANCIAL DETAILS</h4>
+    @Html.LabelFor(x => x.data.result.bankName)
+    @Html.TextBoxFor(x => x.data.result.bankName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.branch)
+    @Html.TextBoxFor(x => x.data.result.branch)
+    <br />
+    <br />
+    <b>Select Account Type</b>
+    <br />
+    <span> Savings : @Html.RadioButtonFor(x => x.data.result.accountType, "Savings")</span>
+    <span> Current : @Html.RadioButtonFor(x => x.data.result.accountType, "Current")</span>
+    <span> Salary : @Html.RadioButtonFor(x => x.data.result.accountType, "Salary")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.accountNumber)
+    @Html.TextBoxFor(x => x.data.result.accountNumber)
+    <br />
+    <br />
+    <b>Owned house or Rented house?</b>
+    <br />
+    <span> Owned : @Html.RadioButtonFor(x => x.data.result.ownOrRent, "Owned")</span>
+    <span> Rented : @Html.RadioButtonFor(x => x.data.result.ownOrRent, "Rented")</span>
+    <br />
+    <br />
+    <b>Any Ongoing Loan?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.data.result.currentLoan, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.data.result.currentLoan, "No")</span>
+    <br />
+    <br />
+    <b>Currently Working?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.data.result.workingStatus, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.data.result.workingStatus, "No")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.monthlyIncome)
+    @Html.TextBoxFor(x => x.data.result.monthlyIncome)
+    <br />
+    <br />
+    <h4>VEHICAL DETAILS</h4>
+    @Html.LabelFor(x => x.data.result.makeAndModel)
+    @Html.TextBoxFor(x => x.data.result.makeAndModel)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.variant)
+    @Html.TextBoxFor(x => x.data.result.variant)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.registeredDate)
+    @Html.TextBoxFor(x => x.data.result.registeredDate, new { @type = "Date", @Value = Model.data.result.registeredDate.ToString("yyyy-MM-dd") })
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.mileage)
+    @Html.TextBoxFor(x => x.data.result.mileage)
+    <br />
+    <br />
+    <b>Is your vehical Insured?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.data.result.insurance, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.data.result.insurance, "No")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.registrationNumber)
+    @Html.TextBoxFor(x => x.data.result.registrationNumber)
+    <br />
+    <br />
+    <b>Which hand vehical you are using?</b>
+    <br />
+    <span> FirstHand : @Html.RadioButtonFor(x => x.data.result.nEWorSECONDHAND, "FirstHand")</span>
+    <span> SecondHand : @Html.RadioButtonFor(x => x.data.result.nEWorSECONDHAND, "SecondHand")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.hpi)
+    @Html.TextBoxFor(x => x.data.result.hpi)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.fullPrice)
+    @Html.TextBoxFor(x => x.data.result.fullPrice)
+    <br />
+    <br />
+    <h4>REQUESTED LOAN DETAILS</h4>
+    <b>Select Loan Type</b>
+    <br />
+    <span> UsedCar : @Html.RadioButtonFor(x => x.data.result.carType, "UsedCar")</span>
+    <span> NewCar : @Html.RadioButtonFor(x => x.data.result.carType, "NewCar")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.loanAmount)
+    @Html.TextBoxFor(x => x.data.result.loanAmount)
+    <br />
+    <br />
+    <b>Select Term Duration</b>
+    <br />
+    <span> OneYear : @Html.RadioButtonFor(x => x.data.result.terms, "OneYear")</span>
+    <span> TwoYear : @Html.RadioButtonFor(x => x.data.result.terms, "TwoYear")</span>
+    <span> ThreeYear : @Html.RadioButtonFor(x => x.data.result.terms, "ThreeYear")</span>
+    <span> FourYear : @Html.RadioButtonFor(x => x.data.result.terms, "FourYear")</span>
+    <br />
+    <br />
+    <b>Select Prefered Payment</b>
+    <br />
+    <span> Monthly : @Html.RadioButtonFor(x => x.data.result.prefferedPayment, "Monthly")</span>
+    <span> Quarterly : @Html.RadioButtonFor(x => x.data.result.prefferedPayment, "Quartly")</span>
+    <span> Yearly : @Html.RadioButtonFor(x => x.data.result.prefferedPayment, "Yearly")</span>
+    <br />
+    <br />
+    <b>Do you have a Co-signer?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.data.result.coSigner, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.data.result.coSigner, "No")</span>
+    <br />
+    <br />
+    <b>If yes then fill below</b>
+    <br />
+    @Html.LabelFor(x => x.data.result.coSignerName)
+    @Html.TextBoxFor(x => x.data.result.coSignerName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.data.result.coSignerPhoneNo)
+    @Html.TextBoxFor(x => x.data.result.coSignerPhoneNo)
+    <br />
+    <br />
+    <input type="submit" value="Update" />
+}

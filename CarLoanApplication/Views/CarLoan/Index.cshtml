@@ -1,0 +1,196 @@
+﻿@model CarLoanApplication.Models.CarLoanApp
+@using System.Data;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>CAR LOAN APPLICATION</h2>
+
+@using (Html.BeginForm("Add", "CarLoan", FormMethod.Post))
+{
+    <h4>PERSONAL DETAILS</h4>
+    @Html.LabelFor(x => x.personadetail.firstName)
+    @Html.TextBoxFor(x => x.personadetail.firstName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.personadetail.lastName)
+    @Html.TextBoxFor(x => x.personadetail.lastName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.personadetail.birthDate)
+    @Html.TextBoxFor(x => x.personadetail.birthDate, new { @type = "Date" })
+    <br />
+    <br />
+    <b> Select Marital Status</b>
+    <br />
+    <span> Married : @Html.RadioButtonFor(x => x.personadetail.maritalStatus, "Married") </span>
+    <span> Single :  @Html.RadioButtonFor(x => x.personadetail.maritalStatus, "Single") </span>
+    <span> Divorced :  @Html.RadioButtonFor(x => x.personadetail.maritalStatus, "Divorced") </span>
+    <span> Widowed :  @Html.RadioButtonFor(x => x.personadetail.maritalStatus, "Widowed") </span>
+    <span> Seperated :  @Html.RadioButtonFor(x => x.personadetail.maritalStatus, "Seperated") </span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.personadetail.email)
+    @Html.TextBoxFor(x => x.personadetail.email)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.personadetail.phoneNumber)
+    @Html.TextBoxFor(x => x.personadetail.phoneNumber)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.personadetail.emergencyContactNumber)
+    @Html.TextBoxFor(x => x.personadetail.emergencyContactNumber)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.personadetail.driversLicenseNumber)
+    @Html.TextBoxFor(x => x.personadetail.driversLicenseNumber)
+    <br />
+    <br />
+    <h4>ADDRESS DETAILS</h4>
+    @Html.LabelFor(x => x.addressdetail.addressLine1)
+    @Html.TextBoxFor(x => x.addressdetail.addressLine1)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.addressdetail.addressLine2)
+    @Html.TextBoxFor(x => x.addressdetail.addressLine2)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.addressdetail.city)
+    @Html.TextBoxFor(x => x.addressdetail.city)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.addressdetail.state)
+    @Html.TextBoxFor(x => x.addressdetail.state)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.addressdetail.postalCode)
+    @Html.TextBoxFor(x => x.addressdetail.postalCode)
+    <br />
+    <br />
+    <h4>FINANCIAL DETAILS</h4>
+    @Html.LabelFor(x => x.financialdetail.bankName)
+    @Html.TextBoxFor(x => x.financialdetail.bankName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.financialdetail.branch)
+    @Html.TextBoxFor(x => x.financialdetail.branch)
+    <br />
+    <br />
+    <b>Select Account Type</b>
+    <br />
+    <span> Savings : @Html.RadioButtonFor(x => x.financialdetail.accountType,"Savings")</span>
+    <span> Current : @Html.RadioButtonFor(x => x.financialdetail.accountType,"Current")</span>
+    <span> Salary : @Html.RadioButtonFor(x => x.financialdetail.accountType, "Salary")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.financialdetail.accountNumber)
+    @Html.TextBoxFor(x => x.financialdetail.accountNumber)
+    <br />
+    <br />
+    <b>Owned house or Rented house?</b>
+    <br />
+    <span> Owned : @Html.RadioButtonFor(x => x.financialdetail.ownOrRent,"Owned")</span>
+    <span> Rented : @Html.RadioButtonFor(x => x.financialdetail.ownOrRent, "Rented")</span>
+    <br />
+    <br />
+    <b>Any Ongoing Loan?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.financialdetail.currentLoan, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.financialdetail.currentLoan, "No")</span>
+    <br />
+    <br />
+    <b>Currently Working?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.financialdetail.workingStatus, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.financialdetail.workingStatus, "No")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.financialdetail.monthlyIncome)
+    @Html.TextBoxFor(x => x.financialdetail.monthlyIncome)
+    <br />
+    <br />
+    <h4>VEHICAL DETAILS</h4>
+    @Html.LabelFor(x => x.vehicaldetail.makeAndModel)
+    @Html.TextBoxFor(x => x.vehicaldetail.makeAndModel)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.vehicaldetail.variant)
+    @Html.TextBoxFor(x => x.vehicaldetail.variant)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.vehicaldetail.registeredDate)
+    @Html.TextBoxFor(x => x.vehicaldetail.registeredDate, new { @type = "Date" })
+    <br />
+    <br />
+    @Html.LabelFor(x => x.vehicaldetail.mileage)
+    @Html.TextBoxFor(x => x.vehicaldetail.mileage)
+    <br />
+    <br />
+    <b>Is your vehical Insured?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.vehicaldetail.insurance,"Yes" )</span>
+    <span> No : @Html.RadioButtonFor(x => x.vehicaldetail.insurance,"No" )</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.vehicaldetail.registrationNumber)
+    @Html.TextBoxFor(x => x.vehicaldetail.registrationNumber)
+    <br />
+    <br />
+    <b>Which hand vehical you are using?</b>
+    <br />
+    <span> FirstHand : @Html.RadioButtonFor(x => x.vehicaldetail.nEWorSECONDHAND, "FirstHand")</span>
+    <span> SecondHand : @Html.RadioButtonFor(x => x.vehicaldetail.nEWorSECONDHAND, "SecondHand")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.vehicaldetail.hpi)
+    @Html.TextBoxFor(x => x.vehicaldetail.hpi)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.vehicaldetail.fullPrice)
+    @Html.TextBoxFor(x => x.vehicaldetail.fullPrice)
+    <br />
+    <br />
+    <h4>REQUESTED LOAN DETAILS</h4>
+    <b>Select Loan Type</b>
+    <br />
+    <span> UsedCar : @Html.RadioButtonFor(x => x.requestedloandetail.carType,"UsedCar")</span>
+    <span> NewCar : @Html.RadioButtonFor(x => x.requestedloandetail.carType, "NewCar")</span>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.requestedloandetail.loanAmount)
+    @Html.TextBoxFor(x => x.requestedloandetail.loanAmount)
+    <br />
+    <br />
+    <b>Select Term Duration</b>
+    <br />
+    <span> OneYear : @Html.RadioButtonFor(x => x.requestedloandetail.terms, "OneYear")</span>
+    <span> TwoYear : @Html.RadioButtonFor(x => x.requestedloandetail.terms, "TwoYear")</span>
+    <span> ThreeYear : @Html.RadioButtonFor(x => x.requestedloandetail.terms, "ThreeYear")</span>
+    <span> FourYear : @Html.RadioButtonFor(x => x.requestedloandetail.terms, "FourYear")</span>
+    <br />
+    <br />
+    <b>Select Prefered Payment</b>
+    <br />
+    <span> Monthly : @Html.RadioButtonFor(x => x.requestedloandetail.prefferedPayment, "Monthly")</span>
+    <span> Quarterly : @Html.RadioButtonFor(x => x.requestedloandetail.prefferedPayment, "Quartly")</span>
+    <span> Yearly : @Html.RadioButtonFor(x => x.requestedloandetail.prefferedPayment, "Yearly")</span>
+    <br />
+    <br />
+    <b>Do you have a Co-signer?</b>
+    <br />
+    <span> Yes : @Html.RadioButtonFor(x => x.requestedloandetail.coSigner, "Yes")</span>
+    <span> No : @Html.RadioButtonFor(x => x.requestedloandetail.coSigner, "No")</span>
+    <br />
+    <br />
+    <b>If yes then fill below</b>
+    <br />
+    @Html.LabelFor(x => x.requestedloandetail.coSignerName)
+    @Html.TextBoxFor(x => x.requestedloandetail.coSignerName)
+    <br />
+    <br />
+    @Html.LabelFor(x => x.requestedloandetail.coSignerPhoneNo)
+    @Html.TextBoxFor(x => x.requestedloandetail.coSignerPhoneNo)
+    <br />
+    <br />
+    <input type="submit" value="submit" />
+}
